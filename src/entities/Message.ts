@@ -28,7 +28,7 @@ class Message extends BaseEntity {
 		(type) => User,
 		(user) => user.messages
 	)
-	user: User[]
+	user: User
 
 	@CreateDateColumn()
 	createdAt: string

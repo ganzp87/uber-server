@@ -1,0 +1,61 @@
+-   potgres 서버 켜기
+
+1. pg_ctl -D "C:\Program Files\PostgreSQL\12\data" stop
+2. pg_ctl -D "C:\Program Files\PostgreSQL\12\data" start
+
+-   Server-side
+    > yarn add typescript ts-node nodemon --dev
+
+*   tslint 사용하여 typescript 코드 관리
+
+    > yarn add tslint-config-prettier --dev
+
+    > yarn add graphql-yoga
+
+-   보안 미들 웨어 (요청때마다 미들웨어가 요청을 잠시 멈추고 검사한 후에 위험하지 않다면 요청을 계속 진행함.
+
+    > yarn add helmet
+
+-   morgan is for logs, Cors is for acceptting connections from other clients
+
+    > yarn add morgan cors
+
+    > yarn add @types/cors @types/helmet @types/morgan --dev (package.json -> dependencied에 추가)
+    > yarn add graphql-tools merge-graphql-schemas
+
+-   graphql에게 type을 체크할 수 있도록 해주는 기능
+
+    > yarn add graphql-to-typescript gql-merge --dev
+
+        ==> pakage.json/scripts내 아래 코드 추가
+        "pretypes": "gql-merge --out-file ./src/schema.graphql ./src/api/**/*.graphql",
+        "types": "graphql-to-typescript ./src/schema.graphql ./src/types/graphql.d.ts"
+        ==> type 명령어 실행 시 pretypes 명령이 실행되어 ./src/schema.graphql라는 결과물 파일을 만들어줌.
+        ==> graphql을 typescript interface로 변경해주고 resolver에서 해당 interface들을 사용하면서 리턴값이 올바른지 체크할 수 있음
+
+-   yarn types에러 발생하여 설치
+
+    > yarn add babel-runtime --dev
+
+    > yarn add pg
+
+-   환경변수 접근 및 제어 가능
+
+    > yarn add dotenv
+
+-   type에 대한의 유효성 검증 기능 (자세한 내용은 class-validator 검색)
+
+    > yarn add class-validator
+
+-   bcryptjs로 패스워드 해쉬화
+
+    > yarn add bcryptjs
+    > yarn add @types/bcryptjs --dev
+
+-   webtoken 생성용
+
+    > yarn add jsonwebtoken
+    > yarn add @types/jsonwebtoken --dev
+
+-   mail인증 용
+    > yarn add mailgun-js && yarn add @types/mailgun-js --dev
