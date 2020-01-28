@@ -60,13 +60,13 @@ class User extends BaseEntity {
 	@Column({ type: "boolean", default: false })
 	isTaken: boolean
 
-	@Column({ type: "double precision", default: 0 })
+	@Column({ type: "double precision", default: 0, nullable: true })
 	lastLng: number
 
-	@Column({ type: "double precision", default: 0 })
+	@Column({ type: "double precision", default: 0, nullable: true })
 	lastLat: number
 
-	@Column({ type: "double precision", default: 0 })
+	@Column({ type: "double precision", default: 0, nullable: true })
 	lastOrientation: number
 
 	@Column({ type: "text", nullable: true })
