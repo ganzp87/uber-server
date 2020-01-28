@@ -1,11 +1,11 @@
-import { Resolvers } from "../../../types/resolvers"
+import { cleanNullArg } from "../../../utils/cleanNullArg"
 import privateResolver from "../../../utils/privateResolver"
 import {
 	ReportMovementMutationArgs,
 	ReportMovementResponse
 } from "../../../types/graphql"
+import { Resolvers } from "../../../types/resolvers"
 import User from "../../../entities/User"
-import { cleanNullArg } from "../../../utils/cleanNullArg"
 
 const resolvers: Resolvers = {
 	Mutation: {
@@ -13,12 +13,16 @@ const resolvers: Resolvers = {
 			async (
 				_,
 				args: ReportMovementMutationArgs,
-				{ req }
+				{ req, pubSub }
 			): Promise<ReportMovementResponse> => {
 				const user: User = req.user
 				const notNull = cleanNullArg(args)
 				try {
 					await User.update({ id: user.id }, { ...notNull })
+					const updatedUser = await User.findOne({ id: user.id }) // DriverSubscription에 Update된 user 정보를 전달해야함
+					pubSub.publish("driverUpdate", {
+						DriversSubscription: updatedUser // DriversSubscription처럼 같은 이름의 Data여야 함.
+					})
 					return {
 						ok: true,
 						error: null
