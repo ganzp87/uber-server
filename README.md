@@ -37,8 +37,9 @@ Server for the uber clone course
 -   [x] Subscribe to Nearby Ride Requests
 -   [x] Request a Ride
 -   [x] Subscribe to Nearby Drivers
--   [x] Get Nearby Rides Requests
--   [ ] Subscribe to Ride Status
+-   [x] Get Nearby Rides Requests (드라이버가 요청하는 함수, 앱을 처음 실행하면 근처 ride 요청을 받음)
+-   [x] Subscribe to Ride Status
+-   [ ] Update Ride Status
 -   [ ] Get Chat Room Messages
 -   [ ] Subscribe to Chat Room Messages
 -   [ ] Send a Chat Messages
